@@ -1,7 +1,7 @@
-﻿PRAGMA_DISABLE_SHADOW_VARIABLE_WARNINGS
+PRAGMA_DISABLE_SHADOW_VARIABLE_WARNINGS
 
 #include "SJavascriptLog.h"
-#include "Classes/EditorStyleSettings.h"
+#include "Settings/EditorStyleSettings.h"
 #include "Widgets/Layout/SScrollBorder.h"
 #include "Framework/Text/BaseTextLayoutMarshaller.h"
 #include "GameFramework/GameMode.h"
@@ -20,6 +20,7 @@
 #include "SlateOptMacros.h"
 #include "Logging/LogVerbosity.h"
 #include "../../Launch/Resources/Version.h"
+#include "OutputLog/Public/OutputLogSettings.h"
 
 #define LOCTEXT_NAMESPACE "JavascriptConsole"
 
@@ -169,7 +170,7 @@ void SJavascriptConsoleInputBox::Construct( const FArguments& InArgs )
 				.MenuContent
 				(
 					SNew(SBorder)
-					.BorderImage(FEditorStyle::GetBrush("Menu.Background"))
+					.BorderImage(FAppStyle::GetBrush("Menu.Background"))
 					.Padding( FMargin(2) )
 					[
 						SNew(SBox)
@@ -289,7 +290,7 @@ TSharedRef<ITableRow> SJavascriptConsoleInputBox::MakeSuggestionListItemWidget(T
 			[
 				SNew(STextBlock)
 				.Text(FText::FromString(Combined))
-				.TextStyle( FEditorStyle::Get(), "Log.Normal")
+				.TextStyle( FAppStyle::Get(), "Log.Normal")
 				.HighlightText(HighlightText)
 			]
 		];
@@ -657,7 +658,7 @@ void FJavascriptLogTextLayoutMarshaller::AppendMessageToTextLayout(const TShared
 		CachedNumMessages++;
 	}
 
-	const FTextBlockStyle& MessageTextStyle = FEditorStyle::Get().GetWidgetStyle<FTextBlockStyle>(InMessage->Style);
+	const FTextBlockStyle& MessageTextStyle = FAppStyle::Get().GetWidgetStyle<FTextBlockStyle>(InMessage->Style);
 
 	TSharedRef<FString> LineText = InMessage->Message;
 
@@ -683,7 +684,7 @@ void FJavascriptLogTextLayoutMarshaller::AppendMessagesToTextLayout(const TArray
 
 		++NumAddedMessages;
 
-		const FTextBlockStyle& MessageTextStyle = FEditorStyle::Get().GetWidgetStyle<FTextBlockStyle>(CurrentMessage->Style);
+		const FTextBlockStyle& MessageTextStyle = FAppStyle::Get().GetWidgetStyle<FTextBlockStyle>(CurrentMessage->Style);
 
 		TSharedRef<FString> LineText = CurrentMessage->Message;
 
@@ -778,8 +779,8 @@ void SJavascriptLog::Construct( const FArguments& InArgs )
 	MessagesTextMarshaller = FJavascriptLogTextLayoutMarshaller::Create(InArgs._Messages, &Filter);
 
 	MessagesTextBox = SNew(SMultiLineEditableTextBox)
-		.Style(FEditorStyle::Get(), "Log.TextBox")
-		.TextStyle(FEditorStyle::Get(), "Log.Normal")
+		.Style(FAppStyle::Get(), "Log.TextBox")
+		.TextStyle(FAppStyle::Get(), "Log.Normal")
 		.ForegroundColor(FLinearColor::Gray)
 		.Marshaller(MessagesTextMarshaller)
 		.IsReadOnly(true)
@@ -796,7 +797,7 @@ void SJavascriptLog::Construct( const FArguments& InArgs )
 		[
 			SNew(SBorder)
 			.Padding(3)
-		.BorderImage(FEditorStyle::GetBrush("ToolPanel.GroupBorder"))
+		.BorderImage(FAppStyle::GetBrush("ToolPanel.GroupBorder"))
 		[
 			SNew(SVerticalBox)
 
@@ -811,7 +812,7 @@ void SJavascriptLog::Construct( const FArguments& InArgs )
 		.AutoWidth()
 		[
 			SNew(SComboButton)
-			.ComboButtonStyle(FEditorStyle::Get(), "GenericFilters.ComboButtonStyle")
+			.ComboButtonStyle(FAppStyle::Get(), "GenericFilters.ComboButtonStyle")
 		.ForegroundColor(FLinearColor::White)
 		.ContentPadding(0)
 		.ToolTipText(LOCTEXT("AddFilterToolTip", "Add an output log filter."))
@@ -826,8 +827,8 @@ void SJavascriptLog::Construct( const FArguments& InArgs )
 		.AutoWidth()
 		[
 			SNew(STextBlock)
-			.TextStyle(FEditorStyle::Get(), "GenericFilters.TextStyle")
-		.Font(FEditorStyle::Get().GetFontStyle("FontAwesome.9"))
+			.TextStyle(FAppStyle::Get(), "GenericFilters.TextStyle")
+		.Font(FAppStyle::Get().GetFontStyle("FontAwesome.9"))
 		.Text(FText::FromString(FString(TEXT("\xf0b0"))) /*fa-filter*/)
 		]
 
@@ -836,7 +837,7 @@ void SJavascriptLog::Construct( const FArguments& InArgs )
 		.Padding(2, 0, 0, 0)
 		[
 			SNew(STextBlock)
-			.TextStyle(FEditorStyle::Get(), "GenericFilters.TextStyle")
+			.TextStyle(FAppStyle::Get(), "GenericFilters.TextStyle")
 		.Text(LOCTEXT("Filters", "Filters"))
 		]
 		]
@@ -926,7 +927,7 @@ bool SJavascriptLog::CreateLogMessages( const TCHAR* V, ELogVerbosity::Type Verb
 		if (UObjectInitialized() && !GExitPurge)
 		{
 			// Logging can happen very late during shutdown, even after the UObject system has been torn down, hence the init check above
-			LogTimestampMode = GetDefault<UEditorStyleSettings>()->LogTimestampMode;
+			LogTimestampMode = GetDefault<UOutputLogSettings>()->LogTimestampMode;
 		}				
 
 		const int32 OldNumMessages = OutMessages.Num();

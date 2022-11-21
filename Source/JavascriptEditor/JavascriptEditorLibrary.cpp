@@ -1,4 +1,4 @@
-﻿#include "JavascriptEditorLibrary.h"
+#include "JavascriptEditorLibrary.h"
 #include "LandscapeComponent.h"
 
 // WORKAROUND for 4.15
@@ -855,13 +855,13 @@ bool UJavascriptEditorLibrary::SavePackage(UPackage* Package, FString FileName)
 
 	if (World)
 	{
-		FSavePackageArgs SaveArgs = { NULL, RF_NoFlags, 0U, false,
+		FSavePackageArgs SaveArgs = { nullptr, nullptr, RF_NoFlags, 0U, false,
 			true, true, FDateTime::MinValue(), GError };
 		bSavedCorrectly = UPackage::SavePackage(Package, World, *FileName, SaveArgs);
 	}
 	else
 	{
-		FSavePackageArgs SaveArgs = { NULL, RF_Standalone, 0U, false,
+		FSavePackageArgs SaveArgs = { nullptr, nullptr, RF_Standalone, 0U, false,
 			true, true, FDateTime::MinValue(), GError };
 		bSavedCorrectly =  UPackage::SavePackage(Package, NULL,  *FileName, SaveArgs);
 	}

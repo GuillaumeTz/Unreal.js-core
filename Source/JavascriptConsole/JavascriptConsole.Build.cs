@@ -17,6 +17,7 @@ public class JavascriptConsole : ModuleRules
 				"Slate",
 				"SlateCore",
                 "EditorStyle",
+				"OutputLog",
                 "V8"
 			}
 		);

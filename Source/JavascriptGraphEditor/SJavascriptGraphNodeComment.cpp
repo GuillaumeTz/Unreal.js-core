@@ -1,4 +1,4 @@
-﻿// Copyright Epic Games, Inc. All Rights Reserved.
+// Copyright Epic Games, Inc. All Rights Reserved.
 
 
 #include "SJavascriptGraphNodeComment.h"
@@ -145,7 +145,7 @@ void SJavascriptGraphNodeComment::UpdateGraphNode()
 	PopulateMetaTag(&TagMeta);
 
 	CommentStyle = FEditorStyle::Get().GetWidgetStyle<FInlineEditableTextBlockStyle>("Graph.CommentBlock.TitleInlineEditableText");
-	CommentStyle.EditableTextBoxStyle.Font.Size = CommentNode->FontSize;
+	CommentStyle.EditableTextBoxStyle.TextStyle.Font.Size = CommentNode->FontSize;
 	CommentStyle.TextStyle.Font.Size = CommentNode->FontSize;
 	CachedFontSize = CommentNode->FontSize;
 

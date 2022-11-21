@@ -1,4 +1,4 @@
-﻿#include "JavascriptMultiLineEditableTextBox.h"
+#include "JavascriptMultiLineEditableTextBox.h"
 #include "Widgets/Input/SMultiLineEditableTextBox.h"
 #include "Framework/Text/BaseTextLayoutMarshaller.h"
 
@@ -39,7 +39,7 @@ TSharedRef<SWidget> UJavascriptMultiLineEditableTextBox::RebuildWidget()
 	auto Marshaller = MakeShareable(new FJavascriptTextLayoutMarshaller(this));
 	MyEditableTextBlock = SNew(SMultiLineEditableTextBox)
 		.Style(&WidgetStyle)
-		.TextStyle(&TextStyle)
+		.TextStyle(&WidgetStyle.TextStyle)
 		.Justification(Justification)
 		.WrapTextAt(WrapTextAt)
 		.AutoWrapText(!!AutoWrapText)

@@ -1,4 +1,4 @@
-﻿#include "JavascriptFTextBox.h"
+#include "JavascriptFTextBox.h"
 #include "JavascriptLibrary.h"
 
 #define LOCTEXT_NAMESPACE "JavascriptFTextBox"
@@ -87,10 +87,6 @@ public:
 		}
 
 		EditableTextBox->HandleOnNamespaceKeyChanged(OutStableNamespace, OutStableKey);
-	}
-
-	virtual void RequestRefresh() override
-	{
 	}
 
 private:

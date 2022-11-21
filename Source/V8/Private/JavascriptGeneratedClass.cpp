@@ -1,4 +1,4 @@
-﻿#include "JavascriptGeneratedClass.h"
+#include "JavascriptGeneratedClass.h"
 #include "JavascriptGeneratedClass_Native.h"
 #include "JavascriptContext_Private.h"
 #include "UObject/UnrealType.h"
@@ -11,9 +11,9 @@ void UJavascriptGeneratedClass::InitPropertiesFromCustomList(uint8* DataPtr, con
 	}
 }
 
-void UJavascriptGeneratedClass::PostInitInstance(UObject* InObj)
+void UJavascriptGeneratedClass::PostInitInstance(UObject* InObj, FObjectInstancingGraph* InInstancingGraph)
 {
-	Super::PostInitInstance(InObj);
+	Super::PostInitInstance(InObj, InInstancingGraph);
 
 	auto Context = JavascriptContext.Pin();
 	if (Context.IsValid())
@@ -22,9 +22,9 @@ void UJavascriptGeneratedClass::PostInitInstance(UObject* InObj)
 	}
 }
 
-void UJavascriptGeneratedClass_Native::PostInitInstance(UObject* InObj)
+void UJavascriptGeneratedClass_Native::PostInitInstance(UObject* InObj, FObjectInstancingGraph* InInstancingGraph)
 {
-	Super::PostInitInstance(InObj);
+	Super::PostInitInstance(InObj, InInstancingGraph);
 
 	auto Context = JavascriptContext.Pin();
 	if (Context.IsValid())

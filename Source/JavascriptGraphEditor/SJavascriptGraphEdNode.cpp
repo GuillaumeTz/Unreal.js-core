@@ -1,4 +1,4 @@
-﻿#include "SJavascriptGraphEdNode.h"
+#include "SJavascriptGraphEdNode.h"
 #include "SJavascriptGraphEdNodePin.h"
 
 #include "Blueprint/UserWidget.h"
@@ -14,6 +14,7 @@
 #include "Widgets/SBoxPanel.h"
 #include "Widgets/SWindow.h"
 #include "Widgets/SInvalidationPanel.h"
+#include "EditorStyleSet.h"
 
 TSharedRef<FDragJavascriptGraphNode> FDragJavascriptGraphNode::New(const TSharedRef<SGraphNode>& InDraggedNode)
 {

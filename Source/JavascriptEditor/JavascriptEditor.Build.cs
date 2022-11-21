@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnrealBuildTool;
 
 public class JavascriptEditor : ModuleRules
@@ -95,7 +95,8 @@ public class JavascriptEditor : ModuleRules
                         "Foliage",
                         "LandscapeEditor",
                         "KismetWidgets",
-                        "Kismet",
+						"EditorWidgets",
+						"Kismet",
                         "AnimationBlueprintEditor",
                         "AnimationEditor",
                         "ImageWrapper",
